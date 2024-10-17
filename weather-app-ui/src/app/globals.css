@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff
+  --foreground: #000000
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.bg-day {
+  background: radial-gradient(#dde2c9, #77c1ca);
+}
+
+.bg-night {
+  background: radial-gradient(#21113c, #8a657d);
+}
