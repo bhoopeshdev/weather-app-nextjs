@@ -1,0 +1,4 @@
+.degree-symbol::after {
+    content: "\00B0 C";
+    margin-right: 0.25em;
+}
