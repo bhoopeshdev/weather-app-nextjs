@@ -3,29 +3,41 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-:root {
-  --background: #ffffff
-  --foreground: #000000
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+:root[data-theme='light'] {
+  --bg-primary: #e8edf4;
+  --bg-secondary: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #323232;
+  --primary-color: #e8edf4;
+  --bg-gradient: radial-gradient(#dde2c9, #77c1ca);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+:root[data-theme='dark'] {
+  --bg-primary: #121212;
+  --bg-secondary: #343333;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --primary-color: #333333;
+  --bg-gradient: radial-gradient(#10081d, #64485a);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-.bg-day {
-  background: radial-gradient(#dde2c9, #77c1ca);
-}
-
-.bg-night {
-  background: radial-gradient(#21113c, #8a657d);
+  .bg-theme-gradient {
+    background-image: var(--bg-gradient);
+  }
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+  .text-primary {
+    color: var(--text-primary);
+  }
+  .text-secondary {
+    color: var(--text-secondary);
+  }
 }

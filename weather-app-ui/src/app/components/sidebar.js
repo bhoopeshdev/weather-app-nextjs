@@ -1,5 +1,6 @@
 import './styles/sidebar.css';
 import { getWeatherIconFromCurrent } from '../../../utils/weatherUtils';
+import ThemeToggle from './ThemeToggle';
 
 const Sidebar = ({current}) => {
 
@@ -27,10 +28,12 @@ const Sidebar = ({current}) => {
   ]
 
   return (
-    <div className="flex flex-col h-screen w-1/4 min-w-80 text-white justify-between align-center">
-      <div className="flex items-center justify-center h-20 border-b-2">
-        <p className="text-2xl font-bold">My Weather App</p>
+    <div className="flex flex-col h-screen w-1/4 min-w-80 justify-between align-center bg-gradient text-white">
+      <div className="flex flex-row items-center justify-between h-20 border-b-2">
+        <p className="text-2xl font-bold mx-2">My Weather App</p>
+        <ThemeToggle />
       </div>
+      
       <div className="flex flex-col items-center justify-center h-16">
         <img src={getWeatherIconFromCurrent(current)} alt="" className="w-48 h-48" />
         <p className='text-7xl font-bold degree-symbol'>{current ? current.temp_c : "--"}</p>

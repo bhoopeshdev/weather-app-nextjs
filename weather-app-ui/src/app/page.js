@@ -49,15 +49,15 @@ export default function Home() {
   }
 
   return (
-    <div className="flex bg-day">
+    <div className="flex bg-theme-gradient">
       <Sidebar current={weatherData.current}/>
-      <div className="bg-[#e8edf4] h-screen box-border flex-grow p-4 text-black rounded-3xl rounded-tr-none rounded-br-none">
-        <div className="flex flex-row justify-between">
+      <div className="bg-primary h-screen box-border flex-grow p-4 text-black rounded-3xl rounded-tr-none rounded-br-none text-primary">
+        <div className="flex flex-row justify-between items-center">
           <div className="flex flex-col ml-4">
-            <p className="flex flex-col text-xl font-bold">Welcome Guest</p>
-            <p className="flex flex-col text-sm">What weather are you looking for?</p>
+            <p className="flex flex-col text-xl font-bold">Welcome</p>
+            <p className="flex flex-col text-sm">What weather are you looking for ?</p>
           </div>
-          <img src="/images/menu.png" alt="menu" className="w-10 h-10 rounded-full m-4"/>
+          <img src="/images/profile_pic.png" alt="menu" className="w-10 h-10 rounded-full m-4"/>
         </div>
         <div className="grid grid grid-cols-6 gap-4">
           <div className="col-span-4 flex flex-col rounded-3xl h-full">

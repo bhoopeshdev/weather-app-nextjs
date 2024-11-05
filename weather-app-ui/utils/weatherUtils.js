@@ -43,6 +43,7 @@ export function getWeatherIconFromCurrent(current) {
     } else if(text.includes('cloud') || text.includes('cloudy')) {
       return 'images/day/cloud_sunny.png'
     }
+    return 'images/day/sunny.png'
   }
 
 export function formatTo12HourTime(dateTimeString) {

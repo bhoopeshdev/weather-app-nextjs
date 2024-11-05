@@ -1,0 +1,31 @@
+/* styles/globals.css */
+.toggle {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    background-color: var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+  }
+  
+  .toggle::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+  }
+  
+  .toggle.active {
+    background-color: var(--primary-color);
+  }
+  
+  .toggle.active::before {
+    transform: translateX(25px);
+  }  
