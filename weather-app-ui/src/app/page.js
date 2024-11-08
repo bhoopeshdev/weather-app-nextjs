@@ -3,8 +3,9 @@ import MainBar from "./components/mainbar";
 import Sidebar from "./components/sidebar";
 import SubBar from "./components/subbar";
 import RightSideComp from "./components/rightsidecomp";
+import AuthModal from "./components/AuthModal";
 import axios from "axios";  
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 
 
 const currentCity = "Bangalore"
@@ -35,6 +36,48 @@ const fetchCurrentData = async () => {
 export default function Home() {
 
   const [weatherData, setWeatherData] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user, setUser] = useState(null); // Simulate a user state
+
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleAvatarOnClick = () => {
+    if(!user) {
+      setIsModalOpen(true);
+      return;
+    }
+    toggleDropdown();
+  }
+
+  // Toggle Modal open/close
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  }
+
+  // Close dropdown if clicked outside
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    toggleDropdown(false);
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -57,11 +100,31 @@ export default function Home() {
             <p className="flex flex-col text-xl font-bold">Welcome</p>
             <p className="flex flex-col text-sm">What weather are you looking for ?</p>
           </div>
-          <img src="/images/profile_pic.png" alt="menu" className="w-10 h-10 rounded-full m-4"/>
+          <div className="relative" ref={dropdownRef}>
+            <img src="/images/profile_pic.png" alt="menu" className="w-10 h-10 rounded-full m-4 cursor-pointer" onClick={handleAvatarOnClick}/>
+            {isOpen && (
+              <div className="absolute right-0 w-48 bg-secondary text-primary rounded-lg shadow-xl z-10 border border-gray">
+                <ul className="py-2">
+                  <li className="px-4 py-2 hover:bg-active">
+                    <a className="block" onClick={() => toggleModal()}>Profile</a>
+                  </li>
+                  <li className="px-4 py-2 hover:bg-active">
+                    <a className="block" onClick={() => handleLogout()}>Logout</a>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
+        <AuthModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          user={user}
+          setUser={setUser}
+        />
         <div className="grid grid grid-cols-6 gap-4">
           <div className="col-span-4 flex flex-col rounded-3xl h-full">
-            <MainBar forecast={weatherData.forecast}/>
+            <MainBar current={weatherData.current} forecast={weatherData.forecast}/>
             <p className="ml-4 my-4">More details of today's weather</p>
             <SubBar dayData={weatherData.forecast.forecastday[0].day}/>
           </div>

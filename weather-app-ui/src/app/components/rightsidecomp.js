@@ -5,7 +5,7 @@ const RightSideComp = ({forecastday}) => {
 
     return (
         <div className="col-span-2 h-full flex flex-col">
-            <div className="p-6 bg-secondary rounded-3xl basis-3/5">
+            <div className="p-6 bg-secondary rounded-3xl basis-3/5 entry-animate">
                 <p> 3 Day forecast</p>
                 <div className="flex flex-col justify-evenly h-full divide-y divide-gray-200">
                     {forecastday.map((data, index) => { 
@@ -23,7 +23,8 @@ const RightSideComp = ({forecastday}) => {
                     })}
                 </div>
             </div>
-            <div className="mt-4 p-6 bg-secondary rounded-3xl basis-2/5">
+            <div className="mt-4 p-6 bg-secondary rounded-3xl basis-2/5 entry-animate">
+                <p>Astro</p>
                 <SunriseAndSunset data={forecastday[0].astro}/>
             </div>
         </div>
